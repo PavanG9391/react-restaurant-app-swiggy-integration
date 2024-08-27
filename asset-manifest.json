@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/react-restaurant-app-swiggy-integration/static/css/main.6dde6049.css",
+    "main.js": "/react-restaurant-app-swiggy-integration/static/js/main.29bb4dae.js",
+    "static/js/70.f8fd3ac1.chunk.js": "/react-restaurant-app-swiggy-integration/static/js/70.f8fd3ac1.chunk.js",
+    "static/js/453.52a237ae.chunk.js": "/react-restaurant-app-swiggy-integration/static/js/453.52a237ae.chunk.js",
+    "static/media/logo.jfif": "/react-restaurant-app-swiggy-integration/static/media/logo.8f75ba257d6ddbc3ddab.jfif",
+    "static/media/logo.svg": "/react-restaurant-app-swiggy-integration/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/react-restaurant-app-swiggy-integration/index.html",
+    "main.6dde6049.css.map": "/react-restaurant-app-swiggy-integration/static/css/main.6dde6049.css.map",
+    "main.29bb4dae.js.map": "/react-restaurant-app-swiggy-integration/static/js/main.29bb4dae.js.map",
+    "70.f8fd3ac1.chunk.js.map": "/react-restaurant-app-swiggy-integration/static/js/70.f8fd3ac1.chunk.js.map",
+    "453.52a237ae.chunk.js.map": "/react-restaurant-app-swiggy-integration/static/js/453.52a237ae.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6dde6049.css",
+    "static/js/main.29bb4dae.js"
+  ]
+}
