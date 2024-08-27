@@ -1,19 +1,18 @@
 import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shrimmer from "./Shrimmer";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import useOnlineStatus from "../uitls/customHooks/useOnlineStatus";
 import { withStarRated } from "./RestaurantCard";
-
+import UserContext from "../uitls/UserContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filterRestaurants, setFilterRestaurants] = useState([]);
-  
 
   const [search, setSearch] = useState("");
 
-  const RestaurantCardStarRated =withStarRated(RestaurantCard)
+  const RestaurantCardStarRated = withStarRated(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -34,9 +33,13 @@ const Body = () => {
 
   console.log(listOfRestaurants);
 
-  const onlineStatus =useOnlineStatus();
+  const onlineStatus = useOnlineStatus();
+  const { setUserName, loggedInUser } = useContext(UserContext);
 
-  if(onlineStatus ===false) return <h1>Looks like you were in offline!!! Please check your internet c</h1>
+  if (onlineStatus === false)
+    return (
+      <h1>Looks like you were in offline!!! Please check your internet c</h1>
+    );
 
   if (listOfRestaurants.length === 0) {
     return <Shrimmer />;
@@ -56,31 +59,52 @@ const Body = () => {
               setSearch(e.target.value);
             }}
           />
-          <button className="px-4 py-2 bg-green-100 m-4 rounded-lg" onClick={()=>{
-            console.log(search)
-           const filteredRestaurants= listOfRestaurants.filter((res)=>res.info.name.toLowerCase().includes(search.toLowerCase()))
-           setFilterRestaurants(filteredRestaurants)
-          }}>Search</button>
+          <button
+            className="px-4 py-2 bg-green-100 m-4 rounded-lg"
+            onClick={() => {
+              console.log(search);
+              const filteredRestaurants = listOfRestaurants.filter((res) =>
+                res.info.name.toLowerCase().includes(search.toLowerCase())
+              );
+              setFilterRestaurants(filteredRestaurants);
+            }}
+          >
+            Search
+          </button>
         </div>
         <div className="search m-4 p-4 flex items-center">
-        <button
-          className="px-4 py-2 bg-gray-100 rounded-lg"
-          onClick={() => {
-            const filterRes = listOfRestaurants.filter((item) => {
-              return item.info.avgRating > 4.2;
-            });
-            setFilterRestaurants(filterRes);
-          }}
-        >
-          Top Rated Restaurants
-        </button>
-        </div>   
+          <button
+            className="px-4 py-2 bg-gray-100 rounded-lg"
+            onClick={() => {
+              const filterRes = listOfRestaurants.filter((item) => {
+                return item.info.avgRating > 4.2;
+              });
+              setFilterRestaurants(filterRes);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
+        <div className="search m-4 p-4 flex items-center">
+          <label>UserName:</label>
+          <input
+            className="border border-black p-2 "
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
       <div className="flex flex-wrap">
         {filterRestaurants.map((item) => {
-          return (<Link key={item.info.id} to={"/restaurants/"+item.info.id}>
-             {item.info.avgRating > 4.4 ? (<RestaurantCardStarRated resData={item}/>) : (<RestaurantCard  resData={item}/>)}
-            </Link>);
+          return (
+            <Link key={item.info.id} to={"/restaurants/" + item.info.id}>
+              {item.info.avgRating > 4.4 ? (
+                <RestaurantCardStarRated resData={item} />
+              ) : (
+                <RestaurantCard resData={item} />
+              )}
+            </Link>
+          );
         })}
       </div>
     </div>
